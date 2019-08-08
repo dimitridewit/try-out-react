@@ -1,0 +1,136 @@
+body {
+  box-sizing: border-box;
+}
+
+.App {
+  margin: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@mixin snap-point-container {
+  @supports(scroll-snap-align: start) {
+    scroll-snap-type: x mandatory;
+    overflow-y: scroll;
+  }
+
+  @supports not (scroll-snap-align: start) {
+    overflow-y: scroll;
+  }
+}
+
+.snap-point-gallery {
+  @include snap-point-container;
+  display: flex;
+  height: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  width: 400px;
+
+  .gallery-img {
+    scroll-snap-align: center;
+    display: inline-block;
+    height: 100%;
+    border-radius: 10px;
+    width: 100%;
+    min-width: 400px;
+
+    &.red {
+      background-color: red;
+    }
+
+    &.orange {
+      background-color: orange;
+    }
+
+    &.yellow {
+      background-color: yellow;
+    }
+  }
+}
+
+.carousel {
+  margin: 0 auto;
+  padding-bottom: 100px;
+  width: 600px;
+  height: 400px;
+
+  .controls {
+    display: flex;
+  }
+
+  .slides {
+    margin: 0;
+    position: relative;
+    list-style-type: none;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    overflow-x: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: auto;
+    width: 100%;
+    min-width: 100%;
+    transition: opacity ease .2s;
+    opacity: 0;
+
+    &.current {
+      opacity: 1;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .progress-bar {
+    width: 100px;
+    border: 2px solid black;
+    height: 20px;
+    border-radius: 4px;
+
+    .filler {
+      transition: width .2s ease;
+      background-color: green;
+      height: 100%;
+    }
+  }
+}
